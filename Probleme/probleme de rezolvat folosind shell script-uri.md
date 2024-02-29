@@ -1,5 +1,13 @@
 # Probleme
 ## Parametri
+Scrieți un script în Bash care primește trei parametri: un director sursă, un tip de fișier și un director țintă. Scopul scriptului este să copieze toate fișierele de tipul specificat din directorul sursă în directorul țintă. Asigurați-vă că scriptul verifică dacă parametrii sunt furnizați corect și afișează un mesaj de utilizare în caz contrar.
+
+Exemplu de apelare a scriptului:
+
+```bash
+./copy_files.sh /path/to/source_directory .txt /path/to/target_directory
+```
+Acest exemplu va copia toate fișierele cu extensia .txt din directorul /path/to/source_directory în directorul /path/to/target_directory.
 ## Liste
 
 Scrieți un script Bash numit `sort_numbers.sh` care primește ca parametru o listă de numere. Scriptul trebuie să sorteze numerele pare crescător și să le scrie într-un fișier numit `numere_pare.txt`, iar numerele impare trebuie să fie sortate descrescător și să fie scrise într-un fișier numit `numere_impare.txt`. Dacă nu sunt numere pare sau impare în lista dată, atunci fișierele corespunzătoare trebuie să fie goale. Scrieți un mesaj de eroare dacă nu sunt furnizate argumente în linia de comandă.
@@ -14,6 +22,11 @@ Puteți apoi rula scriptul, furnizând o listă de numere ca argumente în linia
 ./sort_numbers.sh 3 7 2 10 5
 ```
 ## Functii
+
 Scrieți un script shell numit `fibonacci.sh` care primește un singur parametru, n, reprezentând poziția în șirul lui Fibonacci. Scriptul trebuie să calculeze al n-lea număr din șirul lui Fibonacci și să-l afișeze în consolă. Dacă n este mai mic sau egal cu 0, scriptul ar trebui să afișeze un mesaj de eroare corespunzător. Asigurați-vă că scriptul poate calcula și afișa valori mari din șirul Fibonacci.
 
 Puteți considera că primul și al doilea număr din șirul lui Fibonacci sunt 0 și 1, respectiv. Restul numerelor din șir sunt suma celor două precedente. De exemplu, al treilea număr este 1 (0 + 1), al patrulea este 2 (1 + 1), al cincilea este 3 (1 + 2) etc.
+
+```bash
+./fibonacci.sh 3
+```
