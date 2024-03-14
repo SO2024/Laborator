@@ -1,0 +1,5 @@
+AB12345, Popescu Ana, Farmacia MedLife, 01.01.2024
+CD56789, Ionescu Mihai, Farmacia Moderna, 02.02.2024
+EF98765, Georgescu Andreea, Farmacia Vita, 03.03.2024
+GH54321, Vasilescu Maria, Farmacia Medici, 44.04.2024
+IJ10987, Popa Ion, Farmacia MedExpert, 05.05.2024

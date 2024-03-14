@@ -1,0 +1,5 @@
+UV12345, Dobre Mihai, Farmacia ExpertMed, 11.11.2024
+WX56789, Popovici Ana Maria, Farmacia Medica, 12.12.2024
+YZ98765, Ionescu George, Farmacia Modern, 13.01.2025
+AB54321, Stan Maria, Farmacia Vita, 14.02.2025
+CD10987, Vasilescu Andrei, Farmacia Expert, 15.03.2025
