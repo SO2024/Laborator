@@ -2,4 +2,4 @@ KL12345, Stanescu Andrei, Farmacia Med, 06.06.2024
 MN56789, Ivanescu Ana, Farmacia MedLife, 07.07.2024
 OP98765, Iacob Maria, Farmacia Moderna, 08.08.2024
 QR54321, Popescu Radu, Farmacia Vita, 09.09.2024
-ST10987, Ionescu Cristina, Farmacia Medici, 10.10.2024
+STB109875, Ionescu Cristina, Farmacia Medici, 10.10.2024
