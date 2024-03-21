@@ -1,4 +1,5 @@
 #!/bin/bash
+source ./config.sh
 
 # Script pentru înlocuirea ID-urilor cu nume în mesaje
 
@@ -25,16 +26,27 @@ replace_ids_with_names() {
 }
 
 get_messages() {
-    local response=$(curl -s -X GET "$MESSAGES_URL")
-    echo "$response" > ./chat.txt
+    echo "curl -s -X GET $BASE_URL$CHAT_ENDPOINT -d chatId=$1"
+    local response=$(curl -s -X GET "$BASE_URL$CHAT_ENDPOINT?chatId=$1")
+    # echo "$response" > ./chat.txt
+    echo "$response" 
 }
 
 get_users() {
-    local response=$(curl -s -X GET "$USERS_URL")
+    local response=$(curl -s -X GET "$BASE_URL$USERS_ENDPOINT")
     echo "$response" > ./users.json
+    # echo "$response"
 }
+chatID=$(cat ./chatId.txt)
 
-# Exemplu de utilizare
-message="845ecb8a-fe68-4267-8bff-8c31761e41f4: Salut lume"
-users_json='{"845ecb8a-fe68-4267-8bff-8c31761e41f4": "Ion"}'
-echo "$(replace_ids_with_names "$message" "$users_json")"
+while true; do
+    get_messages $chatID
+    get_users
+    sleep 5
+    clear
+done
+
+# # Exemplu de utilizare
+# message="845ecb8a-fe68-4267-8bff-8c31761e41f4: Salut lume"
+# users_json='{"845ecb8a-fe68-4267-8bff-8c31761e41f4": "Ion"}'
+# echo "$(replace_ids_with_names "$message" "$users_json")"
