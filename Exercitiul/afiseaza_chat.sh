@@ -1,20 +1,17 @@
 #!/bin/bash
 source ./config.sh
 
-# Script pentru înlocuirea ID-urilor cu nume în mesaje
-
 # Funcție pentru înlocuirea ID-urilor cu nume
 replace_ids_with_names() {
     local message=$1
-    local users_json=$2
+    local users=$2
     local names=()
     local ids=()
 
-    # Parsarea JSON-ului pentru a obține lista de utilizatori
     while IFS= read -r line; do
-        ids+=( $(echo "$line" | jq -r 'keys[]') )
-        names+=( $(echo "$line" | jq -r 'values[]') )
-    done < <(echo "$users_json" | jq -c '.[]')
+        ids+=( $(echo "$line" | cut -d ':' -f 1) )
+        names+=( $(echo "$line" | cut -d ':' -f 2) )
+    done < <(echo "$users")
 
     # Înlocuirea ID-urilor cu nume
     for ((i=0; i<${#ids[@]}; i++)); do
@@ -22,31 +19,36 @@ replace_ids_with_names() {
         local name="${names[i]}"
         message=$(echo "$message" | sed "s/$id/$name/g")
     done
-    echo "$message"
+
+    while IFS= read -r line; do
+        text=( $(echo "$line" | cut -d ':' -f 2) )
+        name=( $(echo "$line" | cut -d ':' -f 1) )
+        echo "$name:"
+        echo "$text" | base64 --decode 
+    done < <(echo "$message")
+
 }
 
 get_messages() {
-    echo "curl -s -X GET $BASE_URL$CHAT_ENDPOINT -d chatId=$1"
     local response=$(curl -s -X GET "$BASE_URL$CHAT_ENDPOINT?chatId=$1")
-    # echo "$response" > ./chat.txt
     echo "$response" 
 }
 
 get_users() {
     local response=$(curl -s -X GET "$BASE_URL$USERS_ENDPOINT")
-    echo "$response" > ./users.json
-    # echo "$response"
+    echo "$response"
 }
+
 chatID=$(cat ./chatId.txt)
 
 while true; do
-    get_messages $chatID
-    get_users
+    message=$(get_messages $chatID)
+    ussers=$(get_users)
+    replace_ids_with_names "$message" "$ussers"
     sleep 5
     clear
 done
 
-# # Exemplu de utilizare
-# message="845ecb8a-fe68-4267-8bff-8c31761e41f4: Salut lume"
-# users_json='{"845ecb8a-fe68-4267-8bff-8c31761e41f4": "Ion"}'
-# echo "$(replace_ids_with_names "$message" "$users_json")"
+# # Exemplu de raspuns
+# message=845ecb8a-fe68-4267-8bff-8c31761e41f4: U2FsdXQgTHVtZQo=
+# users=845ecb8a-fe68-4267-8bff-8c31761e41f4": TestUser

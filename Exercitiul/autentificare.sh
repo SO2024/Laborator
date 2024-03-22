@@ -10,10 +10,10 @@ login() {
 nume_utilizator=$1
 
 echo "Autentificare..."
+sleep 2
 userId=$(login "$nume_utilizator")
 if [[ -n $userId ]]; then
     echo "Autentificare cu succes! ID utilizator: $userId"
-    echo "Acum trimitere un mesaj"
     echo $userId > $USERID_STORE
 else
     echo "Eroare la autentificare: $nume_utilizator"
